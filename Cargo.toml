@@ -1,0 +1,9 @@
+[package]
+name = "wgpu-tutorial"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+winit = "0.30.5"
+wgpu = "22.1.0"
+smol = "2.0.1"
