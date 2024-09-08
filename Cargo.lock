@@ -296,9 +296,23 @@ checksum = "79296716171880943b8470b5f8d03aa55eb2e645a4874bdbb28adb49162e012c"
 
 [[package]]
 name = "bytemuck"
-version = "1.17.1"
+version = "1.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "773d90827bc3feecfb67fab12e24de0749aad83c74b9504ecde46237b5cd24e2"
+checksum = "94bbb0ad554ad961ddc5da507a12a29b14e4ae5bda06b19f575a3e6079d2e2ae"
+dependencies = [
+ "bytemuck_derive",
+]
+
+[[package]]
+name = "bytemuck_derive"
+version = "1.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0cc8b54b395f2fcfbb3d90c47b01c7f444d94d05bdeb775811dec868ac3bbc26"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.76",
+]
 
 [[package]]
 name = "bytes"
@@ -651,6 +665,15 @@ dependencies = [
  "khronos_api",
  "log",
  "xml-rs",
+]
+
+[[package]]
+name = "glam"
+version = "0.29.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c28091a37a5d09b555cb6628fd954da299b536433834f5b8e59eba78e0cbbf8a"
+dependencies = [
+ "bytemuck",
 ]
 
 [[package]]
@@ -1563,9 +1586,9 @@ dependencies = [
 
 [[package]]
 name = "smol"
-version = "2.0.1"
+version = "2.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aad24f41392790e6ac67f4f4cd871da61f7d758e07b5622431e491e897d9c8a7"
+checksum = "a33bd3e260892199c3ccfc487c88b2da2265080acb316cd920da72fdfd7c599f"
 dependencies = [
  "async-channel",
  "async-executor",
@@ -2064,6 +2087,8 @@ dependencies = [
 name = "wgpu-tutorial"
 version = "0.1.0"
 dependencies = [
+ "bytemuck",
+ "glam",
  "smol",
  "wgpu",
  "winit",

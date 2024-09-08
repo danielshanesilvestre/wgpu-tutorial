@@ -6,4 +6,6 @@ edition = "2021"
 [dependencies]
 winit = "0.30.5"
 wgpu = "22.1.0"
-smol = "2.0.1"
+smol = "2.0.2"
+glam = { version = "0.29.0", features = ["bytemuck"] }
+bytemuck = { version = "1.18.0", features = ["derive"] }
