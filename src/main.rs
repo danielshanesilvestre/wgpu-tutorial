@@ -1,7 +1,9 @@
 mod renderer;
+mod camera;
 
 use std::sync::Arc;
-use winit::event::WindowEvent;
+use glam::Vec3;
+use winit::event::{DeviceEvent, DeviceId, WindowEvent};
 use winit::event_loop::{ActiveEventLoop};
 use winit::event_loop::EventLoop;
 use winit::window::WindowId;
@@ -13,7 +15,7 @@ enum App {
     Init,
     Main {
         window: Arc<Window>,
-        renderer: Renderer
+        renderer: Renderer,
     },
 }
 
@@ -23,7 +25,9 @@ impl winit::application::ApplicationHandler for App {
 
         let window = Arc::new(event_loop.create_window(Window::default_attributes()).unwrap());
         let renderer = Renderer::initialize(&window);
-
+        
+        let window_size = window.inner_size();
+        
         *self = App::Main {
             window,
             renderer,
@@ -36,7 +40,7 @@ impl winit::application::ApplicationHandler for App {
                 event_loop.exit();
             },
             WindowEvent::Resized(size) => {
-                let App::Main { renderer, window } = self else { return };
+                let App::Main { renderer, window, .. } = self else { return };
                 if size.width != 0 && size.height != 0 {
                     renderer.resize_surface(size);
                     window.request_redraw();
@@ -47,6 +51,17 @@ impl winit::application::ApplicationHandler for App {
 
                 renderer.draw();
             },
+            _ => {}
+        }
+    }
+
+    fn device_event(&mut self, event_loop: &ActiveEventLoop, device_id: DeviceId, event: DeviceEvent) {
+        match event {
+            DeviceEvent::MouseMotion { delta } => {
+                let App::Main { renderer, .. } = self else { return };
+                
+                
+            }
             _ => {}
         }
     }
